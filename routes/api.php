@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BreweryController;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -20,6 +21,9 @@ use Illuminate\Validation\ValidationException;
 Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/breweries', [BreweryController::class, 'index']);
+Route::get('/breweries/{brewery}', [BreweryController::class, 'show']);
 
 Route::post('/sanctum/token', function (Request $request) {
     $request->validate([
